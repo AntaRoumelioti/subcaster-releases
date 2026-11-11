@@ -1,0 +1,32 @@
+name: test translation style
+on:
+  workflow_dispatch:
+  push:
+    paths: ['tools/test_llm_style.py', '.github/workflows/test-style.yml']
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        repo: [42ailab/TranslateGemma-12B-GGUF, bartowski/google_gemma-4-12B-it-GGUF, bartowski/gemma-4-12B-it-GGUF, Qwen/Qwen3-8B-GGUF, ggml-org/gemma-3-12b-it-GGUF]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install --quiet huggingface_hub
+      - env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          gh release download b12195 --repo ggml-org/llama.cpp --pattern 'llama-b12195-bin-ubuntu-x64.tar.gz' -O llama.pkg
+          mkdir llama && cd llama && tar xzf ../llama.pkg && find . -name 'llama-server' -exec chmod +x {} \;
+      - run: python tools/test_llm_style.py ${{ matrix.repo }}
+      - env: { GH_TOKEN: '${{ github.token }}' }
+        if: always()
+        run: |
+          N=$(echo '${{ matrix.repo }}' | tr '/' '_')
+          touch style.txt; cp style.txt "style-$N.txt"
+          gh release view tests >/dev/null 2>&1 || gh release create tests --title tests --notes tests --prerelease
+          gh release upload tests "style-$N.txt" --clobber
