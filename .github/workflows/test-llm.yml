@@ -1,0 +1,26 @@
+name: test local translation model
+on:
+  workflow_dispatch:
+  push:
+    paths: ['tools/test_llm_mt.py', '.github/workflows/test-llm.yml']
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install --quiet huggingface_hub gguf
+      - env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          gh release download --repo ggml-org/llama.cpp --pattern '*bin-ubuntu-x64.zip' -O llama.zip
+          mkdir llama && cd llama && unzip -q ../llama.zip && find . -name 'llama-server' -exec chmod +x {} \;
+      - run: python tools/test_llm_mt.py 42ailab/TranslateGemma-4B-GGUF 42ailab/TranslateGemma-12B-GGUF
+      - env: { GH_TOKEN: '${{ github.token }}' }
+        if: always()
+        run: |
+          gh release view tests >/dev/null 2>&1 || gh release create tests --title "tests" --notes "Δοκιμές" --prerelease
+          gh release upload tests results.txt --clobber
