@@ -1,0 +1,26 @@
+name: translation models
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { pair: el-en, model: Helsinki-NLP/opus-mt-tc-big-el-en }
+          - { pair: en-el, model: Helsinki-NLP/opus-mt-tc-big-en-el }
+          - { pair: en-ko, model: Helsinki-NLP/opus-mt-tc-big-en-ko }
+          - { pair: ko-en, model: Helsinki-NLP/opus-mt-ko-en }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install --quiet "optimum[exporters,onnxruntime]" sentencepiece torch --extra-index-url https://download.pytorch.org/whl/cpu
+      - run: python tools/convert_mt.py ${{ matrix.model }} mt-${{ matrix.pair }}
+      - run: cd mt-${{ matrix.pair }} && zip -q -9 ../mt-${{ matrix.pair }}.zip *
+      - env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          gh release view models-1 >/dev/null 2>&1 || gh release create models-1 --title "Μοντέλα μετάφρασης" --notes "OPUS-MT (Helsinki-NLP, CC-BY 4.0), σε ONNX για το Subcaster." || true
+          gh release upload models-1 mt-${{ matrix.pair }}.zip --clobber
