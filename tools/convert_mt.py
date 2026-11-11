@@ -12,12 +12,13 @@ subprocess.check_call(["optimum-cli", "export", "onnx", "--model", mid, "--task"
 os.makedirs(out, exist_ok=True)
 for a, b in (("encoder_model.onnx", "encoder.onnx"), ("decoder_model.onnx", "decoder.onnx")):
     quantize_dynamic(os.path.join(tmp, a), os.path.join(out, b), weight_type=QuantType.QInt8)
-src = snapshot_download(mid, allow_patterns=["*.spm", "vocab.json", "config.json", "generation_config.json", "README.md", "LICENSE*"])
+src = snapshot_download(mid, allow_patterns=["*.spm", "vocab.json", "target_vocab.json", "tokenizer_config.json", "config.json", "generation_config.json", "README.md", "LICENSE*"])
 def pieces(f):
     sp = spm.SentencePieceProcessor(model_file=f)
     return [[sp.id_to_piece(i), sp.get_score(i), int(sp.is_unknown(i) or sp.is_control(i))] for i in range(sp.get_piece_size())]
 json.dump({"source": pieces(os.path.join(src, "source.spm")), "target": pieces(os.path.join(src, "target.spm"))}, open(os.path.join(out, "spm.json"), "w"), ensure_ascii=False)
 shutil.copy(os.path.join(src, "vocab.json"), out)
+if os.path.exists(os.path.join(src, "target_vocab.json")): shutil.copy(os.path.join(src, "target_vocab.json"), out)   # models with separate vocabularies
 cfg = json.load(open(os.path.join(src, "config.json")))
 gen = json.load(open(os.path.join(src, "generation_config.json"))) if os.path.exists(os.path.join(src, "generation_config.json")) else {}
 keep = {k: cfg.get(k) for k in ("decoder_start_token_id", "pad_token_id", "eos_token_id", "max_length", "num_beams", "bad_words_ids", "vocab_size", "d_model")}
