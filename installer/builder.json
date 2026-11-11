@@ -1,0 +1,47 @@
+{
+ "appId": "com.antigoni.subcaster",
+ "productName": "Subcaster",
+ "copyright": "© 2026 Antigoni Roumelioti",
+ "directories": {
+  "output": "out"
+ },
+ "win": {
+  "target": [
+   {
+    "target": "nsis",
+    "arch": [
+     "x64"
+    ]
+   }
+  ],
+  "icon": "icon.ico",
+  "signAndEditExecutable": false
+ },
+ "nsis": {
+  "oneClick": false,
+  "perMachine": false,
+  "allowToChangeInstallationDirectory": true,
+  "createDesktopShortcut": true,
+  "createStartMenuShortcut": true,
+  "shortcutName": "Subcaster",
+  "installerIcon": "icon.ico",
+  "uninstallerIcon": "icon.ico",
+  "license": "EULA.txt",
+  "artifactName": "Subcaster-Setup-${version}.exe",
+  "deleteAppDataOnUninstall": false,
+  "installerLanguages": [
+   "el_GR",
+   "en_US"
+  ],
+  "language": "1032"
+ },
+ "publish": [
+  {
+   "provider": "github",
+   "owner": "AntaRoumelioti",
+   "repo": "subcaster-releases",
+   "releaseType": "release"
+  }
+ ],
+ "electronVersion": "45.1.0"
+}

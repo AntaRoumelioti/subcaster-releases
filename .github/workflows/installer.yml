@@ -1,0 +1,39 @@
+name: build installer
+# The packaged app (already built and protected) arrives in parts on the "build-input" branch;
+# this job turns it into Subcaster-Setup-<version>.exe and publishes it as a release, which the
+# installed apps pick up as an automatic update.
+on:
+  push:
+    branches: [build-input]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main, path: main }
+      - uses: actions/checkout@v4
+        with: { ref: build-input, path: input }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Join the parts
+        shell: bash
+        run: |
+          cat input/parts/app.zip.* > app.zip
+          mkdir -p app && cd app && unzip -q ../app.zip && ls
+      - name: Installer
+        shell: bash
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          VER=$(node -p "require('./input/build.json').version")
+          cd main/installer
+          npm init -y >/dev/null && npm i electron-builder@25.1.8 >/dev/null
+          npx electron-builder --config builder.json --win nsis --x64 --prepackaged ../../app/Subcaster -c.extraMetadata.version=$VER --publish always
+          ls out
+      - name: Clean up the input branch
+        if: success()
+        shell: bash
+        run: |
+          cd input && git push origin --delete build-input || true

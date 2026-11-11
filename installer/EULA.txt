@@ -1,0 +1,22 @@
+﻿SUBCASTER — ΟΡΟΙ ΧΡΗΣΗΣ / END USER LICENSE AGREEMENT
+
+© 2026 Antigoni Roumelioti. Με επιφύλαξη παντός δικαιώματος.
+
+1. Το Subcaster σου δίνεται για προσωπική χρήση, δωρεάν, σε αυτή τη δοκιμαστική περίοδο.
+2. Δεν επιτρέπεται να το αντιγράψεις, να το μοιραστείς με άλλους, να το πουλήσεις, να το τροποποιήσεις,
+   να το αποσυμπιλήσεις ή να χρησιμοποιήσεις τον κώδικά του, χωρίς γραπτή άδεια της δημιουργού.
+3. Τα βίντεο, οι υπότιτλοι και τα έργα που φτιάχνεις ανήκουν σε σένα.
+4. Η επεξεργασία (αναγνώριση, μετάφραση) γίνεται στον υπολογιστή σου. Δεν στέλνονται τα βίντεό σου πουθενά.
+5. Η εφαρμογή χρησιμοποιεί λογισμικό και μοντέλα τρίτων με τις δικές τους άδειες (δες THIRD-PARTY-NOTICES.txt),
+   μεταξύ αυτών το Gemma 3 της Google, που διέπεται από τους Gemma Terms of Use και την Gemma Prohibited Use Policy.
+6. Το λογισμικό δίνεται «ως έχει», χωρίς εγγυήσεις. Η δημιουργός δεν ευθύνεται για ζημιές από τη χρήση του.
+
+---
+
+1. Subcaster is provided to you for personal use, free of charge, during this preview period.
+2. You may not copy, share, sell, modify, decompile or reuse its code without the author's written permission.
+3. The videos, subtitles and projects you create are yours.
+4. Processing (recognition, translation) happens on your computer. Your videos are not uploaded anywhere.
+5. The app uses third-party software and models under their own licences (see THIRD-PARTY-NOTICES.txt), including
+   Google's Gemma 3, governed by the Gemma Terms of Use and the Gemma Prohibited Use Policy.
+6. The software is provided "as is", without warranty. The author is not liable for damages arising from its use.
