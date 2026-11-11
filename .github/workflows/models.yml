@@ -1,5 +1,8 @@
 name: translation models
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    paths: ['tools/convert_mt.py', '.github/workflows/models.yml']
 permissions:
   contents: write
 jobs:
