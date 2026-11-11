@@ -16,10 +16,8 @@ jobs:
       - run: pip install --quiet huggingface_hub gguf
       - env: { GH_TOKEN: '${{ github.token }}' }
         run: |
-          gh release view --repo ggml-org/llama.cpp --json tagName,assets --jq '.tagName, (.assets[].name)' | tee assets.txt
-          A=$(grep -E 'bin-ubuntu-x64\.(zip|tar\.gz)$' assets.txt | head -1)
-          echo "asset: $A"
-          gh release download --repo ggml-org/llama.cpp --pattern "$A" -O llama.pkg
+          gh release view b12195 --repo ggml-org/llama.cpp --json assets --jq '.assets[].name' | tee assets.txt
+          gh release download b12195 --repo ggml-org/llama.cpp --pattern 'llama-b12195-bin-ubuntu-x64.tar.gz' -O llama.pkg
           mkdir llama && cd llama && (unzip -q ../llama.pkg || tar xzf ../llama.pkg) && find . -name 'llama-server' -exec chmod +x {} \;
       - run: python tools/test_llm_mt.py 42ailab/TranslateGemma-4B-GGUF 42ailab/TranslateGemma-12B-GGUF
       - env: { GH_TOKEN: '${{ github.token }}' }
