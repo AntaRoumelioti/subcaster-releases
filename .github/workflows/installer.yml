@@ -29,7 +29,7 @@ jobs:
         run: |
           VER=$(node -p "require('./input/build.json').version")
           cd main/installer
-          npm init -y >/dev/null && npm i electron-builder@25.1.8 >/dev/null
+          npm init -y >/dev/null && npm pkg set name=subcaster description=Subcaster "author=Antigoni Roumelioti" && npm i -D electron-builder@25.1.8 >/dev/null
           npx electron-builder --config builder.json --win nsis --x64 --prepackaged ../../app/Subcaster -c.extraMetadata.version=$VER --publish always
           ls out
       - name: Clean up the input branch
