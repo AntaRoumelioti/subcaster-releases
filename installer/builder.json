@@ -33,7 +33,8 @@
    "el_GR",
    "en_US"
   ],
-  "language": "1032"
+  "language": "1032",
+  "warningsAsErrors": false
  },
  "publish": [
   {
