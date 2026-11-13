@@ -1,0 +1,22 @@
+{
+  "2.4.9": {
+    "el": ["Όταν βγαίνει νέα έκδοση, η εφαρμογή σε ρωτάει πρώτα, σου λέει τι νέο έχει και δείχνει την πρόοδο της λήψης.", "Ρυθμίσεις → Ενημερώσεις: η έκδοσή σου, η τελευταία έκδοση και κουμπί «Έλεγχος για ενημερώσεις»."],
+    "en": ["When a new version comes out, the app asks first, tells you what's new and shows the download progress.", "Settings → Updates: your version, the latest version and a \"Check for updates\" button."]
+  },
+  "2.4.8": {
+    "el": ["Ήχος του ραβδιού όταν ανοίγει η εφαρμογή (κλείνει στις Ρυθμίσεις).", "Στη φόρτωση το ραβδί «γράφει» υπότιτλους."],
+    "en": ["Staff sound when the app opens (can be turned off in Settings).", "While loading, the staff casts subtitle lines."]
+  },
+  "2.4.7": {
+    "el": ["Ορθογραφία με βάση το νόημα: το τοπικό AI διορθώνει λέξεις που ακούγονται ίδια (σχόλιο/σχολείο, τύχη/τείχη).", "Νέο προεπιλεγμένο θέμα: Αμέθυστος φωτεινό."],
+    "en": ["Spelling from context: the local AI fixes Greek words that sound the same.", "New default theme: Amethyst light."]
+  },
+  "2.4.6": {
+    "el": ["Η οθόνη σύνδεσης δείχνει πότε είναι έτοιμη μια ενημέρωση."],
+    "en": ["The sign-in screen shows when an update is ready."]
+  },
+  "2.4.5": {
+    "el": ["Διόρθωση: η «Ενεργοποίηση» δούλευε μετά τη σύνδεση με Google.", "Επιλογή Ελληνικά/English στην οθόνη σύνδεσης."],
+    "en": ["Fix: \"Activate\" works after signing in with Google.", "Greek/English choice on the sign-in screen."]
+  }
+}
