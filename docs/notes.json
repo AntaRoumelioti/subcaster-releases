@@ -16,7 +16,7 @@
     "en": ["The sign-in screen shows when an update is ready."]
   },
   "2.4.5": {
-    "el": ["Διόρθωση: η «Ενεργοποίηση» δούλευε μετά τη σύνδεση με Google.", "Επιλογή Ελληνικά/English στην οθόνη σύνδεσης."],
+    "el": ["Διόρθωση: η «Ενεργοποίηση» δουλεύει πια και μετά τη σύνδεση με Google.", "Επιλογή Ελληνικά/English στην οθόνη σύνδεσης."],
     "en": ["Fix: \"Activate\" works after signing in with Google.", "Greek/English choice on the sign-in screen."]
   }
 }
