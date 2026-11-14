@@ -1,4 +1,14 @@
 {
+  "2.4.13": {
+    "el": [
+      "Νέα αρχική οθόνη: το ραβδί αναδύεται στο κέντρο και το όνομα γράφεται σαν υπότιτλος, με τονισμένο το «caster».",
+      "Ο ήχος και το animation ξεκινούν μαζί, μόλις εμφανιστεί το παράθυρο."
+    ],
+    "en": [
+      "New start screen: the staff rises in the centre and the name is written like a subtitle, with \"caster\" highlighted.",
+      "Sound and animation start together, as soon as the window appears."
+    ]
+  },
   "2.4.12": {
     "el": [
       "Στη φόρτωση οι γραμμές υποτίτλων βγαίνουν πιο χαμηλά από το ραβδί."
